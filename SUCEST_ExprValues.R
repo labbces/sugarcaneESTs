@@ -3,12 +3,13 @@ library(R.utils)
 library(edgeR)
 rm(list=ls())
 setwd("/data/diriano/sugarcaneESTs//")
-
+#data from https://genome.cshlp.org/content/13/12/2725/T1.expansion.html
 dataCNT<-read.delim(gunzip("SUCEST_ESTs_LIBS.NUMREADS.txt.gz", remove=FALSE, overwrite=TRUE),dec='.',header=TRUE, row.names=1)
 
 
 head(dataCNT)
 
+libraries<-as.data.frame(cbind(Library=colnames(dataCNT),LibraryTissue=gsub("[0-9]*$","",colnames(dataCNT))))
 
 dataCPM<-as.data.frame(cpm(dataCNT, normalized.lib.sizes=FALSE,log=FALSE, prior.count = 0))
 head(dataCPM)
@@ -36,8 +37,18 @@ ggplot(cpm2long[which(cpm2long$Transcript == transcript),],
 keep<-(rowSums(dataCPM != 0)/ncol(dataCPM)*100)>=30
 table(keep)
 expresed30pct<-dataCPM[keep,]
+
 dim(expresed30pct)
+
+head(cpm2long)
+ggplot(cpm2long[which(cpm2long$Transcript %in% rownames(expresed30pct)),], aes(x=Library,y=CPM,fill=libraryTissue)) +
+  theme(legend.position = 'none')+
+  theme_bw()+
+  geom_boxplot()+
+  scale_y_log10()
 #Keeping only transcripts expressed in 30% of the libraries, and with at least one CL library with reads
-callusExpresed<-expresed30pct[rowSums(expresed30pct[,c('CL1','CL2','CL3','CL4','CL5','CL6','CL7')] != 0)>0,]
+
+
+callusExpresed<-expresed30pct[rowSums(expresed30pct[,libraries[which(libraries$LibraryTissue == 'CL'),'Library']] != 0)>0,]
 dim(callusExpresed)
 
