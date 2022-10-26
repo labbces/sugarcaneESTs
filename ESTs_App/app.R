@@ -52,7 +52,8 @@ ui <- fluidPage(
       htmlOutput("listSelectedGenesUI")
     ),
     mainPanel(
-      plotOutput(outputId = "expressionProfileSelectedGene")
+      plotOutput(outputId = "expressionProfileSelectedGene"),
+      tableOutput(outputId = "expressionTableSelectedGene")
     )
   ),
   sidebarLayout(
@@ -139,6 +140,9 @@ server <- function(input, output) {
       ylab("Counts per million - Log10")+
       scale_y_log10() +
       ggtitle(input$selectedGene)
+  })
+  output$expressionTableSelectedGene<-renderTable({
+    cpm2long[which(cpm2long$Transcript == input$selectedGene),]
   })
   datasetDownload <- reactive({
     switch(input$dataset,
