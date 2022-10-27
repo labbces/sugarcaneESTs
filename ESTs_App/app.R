@@ -19,6 +19,28 @@ dataCPM$Transcript<-NULL
 ui <- fluidPage(
   # Title of the APP: Sugarcane EST-DigitalNorthern
   titlePanel(title=div(img(src="LabBCES.png"), "Digital Northern - Sugarcane ESTs - LabBCES")),
+  fluidRow(
+    p("This is a Digital Northern with ESTs from sugarcane. ESTs were generated in the early 2000s (", 
+      a(href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC403815/', 'Vettore et al., 2003'), ").
+      Vettore report 26 EST libraries (Table 1 in the original paper, and reproduced below, 
+      however data from 37 libraries were recovered from NCBI (as shown in the boxplot and barplot below).",
+      style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+    img(src="SUCEST_Libs.png"),
+    br(),
+    p("EST sequences were downloaded from NCBI, and mapped against the EST assembly from SUCEST, with Salmon v1.8.0.
+      From the Salmon estimated read counts per transcript, counts per million were estimated with EdgeR's function cpm."
+    ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+    
+    br(),
+    p("The goal of this tool is to aid in the selection of ESTs for downstream studies. 
+    For this we have devised a set of three filters that act one after the other.
+    The First filter is used to select a set of genes/transcripts that could be considered expressed,
+    for this we will keep gene/transcript that have at least one EST (CPM > 0) in a user defined percent of the libraries.
+    Users can control this with the slider ",strong('Percent of libraries with data:'),"."
+      ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+    
+    br(),
+  ),
   sidebarLayout(
     # Sidebar for the first part of the analyses. Select the amount of samples to be taken into account to consider a gene as expressed.
     sidebarPanel(
