@@ -22,7 +22,7 @@ ui <- fluidPage(
   fluidRow(
     p("This is a Digital Northern with ESTs from sugarcane. ESTs were generated in the early 2000s (", 
       a(href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC403815/', 'Vettore et al., 2003'), ").
-      Vettore report 26 EST libraries (Table 1 in the original paper, and reproduced below, 
+      Vettore report 26 EST libraries (Table 1 in the original paper, and reproduced below), 
       however data from 37 libraries were recovered from NCBI (as shown in the boxplot and barplot below).",
       style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
     img(src="SUCEST_Libs.png"),
@@ -34,8 +34,8 @@ ui <- fluidPage(
     br(),
     p("The goal of this tool is to aid in the selection of ESTs for downstream studies. 
     For this we have devised a set of three filters that act one after the other.
-    The First filter is used to select a set of genes/transcripts that could be considered expressed,
-    for this we will keep gene/transcript that have at least one EST (CPM > 0) in a user defined percent of the libraries.
+    The First filter is used to select a set of genes/transcripts that could be considered reliably expressed,
+    for this we will keep gene/transcripts that have at least one EST (CPM > 0) in a user defined percent of the libraries.
     Users can control this with the slider ",strong('Percent of libraries with data:'),"."
       ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
     
@@ -55,6 +55,18 @@ ui <- fluidPage(
       plotOutput(outputId = "boxPlotExpressedGenes")
     )
   ),
+  p("Then, in a second step the user can focus on a subset of libraries, 
+  keeping only genes/transcript expressed in these libraries with a CPM greater than a specificed value.
+    Users can control these two options with the display list ",strong('Select the group of libraries to focus on:'),", and the text box: ",
+    strong('Minimum CPM:'),"."
+    ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px" ),
+  
+  br(),
+  p("These filters will result in a set of genes, that can be reliably expressed in sugarcane (present in several libraries), and
+  that are expressed above a especified value in a selected subset of these libraries."
+    ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+  
+  br(),
   sidebarLayout(
     sidebarPanel(
       selectInput("selectLib",p("Select the group of libraries to focus on:",
@@ -69,6 +81,10 @@ ui <- fluidPage(
       tableOutput("selectedLibraries"),
     )
   ),
+  p("The last figure can display the expression profile of each of the genes/transcripts kepth after the filters."
+    ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+  
+  br(),
   sidebarLayout(
     sidebarPanel(
       htmlOutput("listSelectedGenesUI")
@@ -78,6 +94,10 @@ ui <- fluidPage(
       tableOutput(outputId = "expressionTableSelectedGene")
     )
   ),
+  p("Finaly, the user can download the whole dataset (all genes/transcripts), or the set after filtering.z"
+    ,style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+  
+  br(),
   sidebarLayout(
     sidebarPanel(
       selectInput("dataset", "Choose a dataset:",
