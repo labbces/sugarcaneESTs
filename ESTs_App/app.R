@@ -23,7 +23,8 @@ ui <- fluidPage(
     p("This is a Digital Northern with ESTs from sugarcane. ESTs were generated in the early 2000s (", 
       a(href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC403815/', 'Vettore et al., 2003'), ").
       Vettore report 26 EST libraries (Table 1 in the original paper, and reproduced below), 
-      however data from 37 libraries were recovered from NCBI (as shown in the boxplot and barplot below).",
+      however data from 37 libraries were recovered from NCBI (as shown in the boxplot and barplot below).
+      Further information about the CL EST libraries are found at the bottom of the page.",
       style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
     img(src="SUCEST_Libs.png"),
     br(),
@@ -107,7 +108,36 @@ ui <- fluidPage(
     mainPanel(
       tableOutput("table")
     )
-  )
+  ),
+  hr(),
+  h2("Information about the CL libraries"),
+  p("No decorrer do Projeto, foram construídas 35 bibliotecas de cDNA a partir dos mais diferentes tecidos de cana-de-açúcar.
+  Destas 35 bibliotecas, 9 não foram aprovadas durante o processo de validação e não tiveram seus clones seqüenciados no Projeto
+   SUCEST (Tabela II). As bibliotecas CL1, CL2, CL3, CL4, CL5 e CL7 foram construídas com RNA mensageiro obtido de calli com 11 
+   dias de idade foram submetidos a diferentes tratamentos: alta temperatura, baixa temperatura, luz e escuro conforme descrito 
+   no Relatório FAPESP No 1 (Nov/99). As bibliotecas CL1, CL2, CL3 e CL4 foram construídas utilizando-se o fago l como vetor, mas, 
+   devido aos inúmeros problemas enfrentados com este tipo de vetor, as demais bibliotecas utilizadas no projeto foram construídas 
+   utilizando-se o plasmídio pSport-1 como vetor. As análises de restrição e seqüenciamento da biblioteca CL1 revelaram que ~65% 
+    dos clones eram pequenos e  havia uma significativa contaminação com DNA de E coli. A biblioteca CL2 foi descartada devido 
+    a contaminação expressiva com clones com alta homologia com fago lambda (21,9%), apesar do título primário muito bom (8,6 x 106), 
+    da insignificância de contaminação com E .coli (1,6%) e do tamanho médio dos insertos ser de 1.650 pb,. 
+    A biblioteca CL3 não apresentou nenhum dos problemas verificados com as bibliotecas anteriores. Foram seqüenciados cerca de 
+    1.000 clones desta biblioteca para confirmar sua qualidade. Uma vez que a biblioteca se mostrou satisfatória, 
+    foram estocados 16.128 clones em triplicata. Entretanto, após 2 meses de estocagem a –70°C verificou-se que o processo de 
+    estocagem havia, de alguma forma, alterado a biblioteca. Os clones eram capazes de crescer em meio contendo 100 mg/mL de ampicilina, 
+    mas não era possível a obtenção de DNA plasmidial (Relatório FAPESP No 1 - Nov/99). Na tentativa de se minimizar este problema, 
+    foi construída uma nova biblioteca (CL4), só que, desta vez utilizou-se a bactéria a XL1-Blue MRF’ (Stratagene) como hospedeira. 
+    Desta biblioteca chegaram a ser seqüenciados 1.536 clones, entretanto, ela apresentou problemas semelhantes aos ocorridos com as 
+    bibliotecas anteriores. A biblioteca CL5 foi construída no plasmídio pSport-1, mas, cerca de 30-40% dos clones seqüenciados não 
+    apresentaram seqüências. Após uma analise detalhada dos resultados, descobriu-se que o DNA plasmidial sofreu algum tipo de 
+    recombinação que levou a perda da região que continha o sítio de ligação do primer T7 utilizado nas reações de seqüenciamento. 
+    A biblioteca CL7 foi descartada porque apresentou, mesmo com um pequeno número de clones seqüenciados (384), uma baixa Taxa de Novidade.",
+    style="text-align:justify;color:black;background-color:lavender;padding:15px;border-radius:10px"),
+  hr(),
+  h1("Funding"),
+  img(src="FAPESP.png"),
+  img(src="CNPq.png"),
+  img(src="RCG2I.png")
   
   
 )
