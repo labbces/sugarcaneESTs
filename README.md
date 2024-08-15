@@ -12,6 +12,7 @@ Counts were transformed into Counts Per Thousand (CPT).
 All EST data presented here comes from teh SUCEST project from the early 2000s.
 
 | EST library name | Biosample NCBI | Tissue | 
+| --- | --- | --- |
 | AD1  | https://www.ncbi.nlm.nih.gov/biosample/SAMN00168687  | seedlings inoculated with Gluconacetobacter diazotroficans |
 | AM1  | https://www.ncbi.nlm.nih.gov/biosample/SAMN00168688  | Apical meristem and tissues surrounding of mature plants |
 | AM2  | https://www.ncbi.nlm.nih.gov/biosample/SAMN00168689  | Apical meristem and tissues surrounding of immature plants |
